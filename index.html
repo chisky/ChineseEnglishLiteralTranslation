@@ -83,6 +83,21 @@
                                 Household Appliances
                             </button>
                         </li>
+                        <li>
+                            <button class="w-full text-left px-4 py-3 text-gray-700 hover:bg-apple-gray-5 font-medium transition-colors duration-200" data-page="about">
+                                About
+                            </button>
+                        </li>
+                        <li>
+                            <button class="w-full text-left px-4 py-3 text-gray-700 hover:bg-apple-gray-5 font-medium transition-colors duration-200" data-page="contact">
+                                Contact
+                            </button>
+                        </li>
+                        <li>
+                            <button class="w-full text-left px-4 py-3 text-gray-700 hover:bg-apple-gray-5 font-medium transition-colors duration-200 rounded-b-lg" data-page="privacy-policy">
+                                Privacy Policy
+                            </button>
+                        </li>
                     </ul>
                 </nav>
             </aside>
@@ -1094,34 +1109,43 @@
 
     <footer class="bg-white mt-12 border-t border-apple-gray-4">
         <div class="container mx-auto px-4 py-6">
-            <p class="text-center text-gray-600">© 2023 ChineseEnglishDict.com - Learn Chinese Expressions with Literal Translations</p>
+            <p class="text-center text-gray-600">© 2025 ChineseEnglishDict.com - Learn Chinese Expressions with Literal Translations</p>
         </div>
     </footer>
 
     <script>
-        // Simple tab navigation
+        // Navigation for both tabs and pages
         document.addEventListener('DOMContentLoaded', function() {
             const tabs = document.querySelectorAll('aside button');
             const sections = document.querySelectorAll('main section');
-            
+
+            // Handle navigation clicks
             tabs.forEach((tab, index) => {
                 tab.addEventListener('click', () => {
-                    // Hide all sections
-                    sections.forEach(section => {
-                        section.classList.add('hidden');
-                    });
-                    
-                    // Show selected section
-                    sections[index].classList.remove('hidden');
-                    
-                    // Update active tab
-                    tabs.forEach(t => {
-                        t.classList.remove('sidebar-active');
-                        t.classList.add('text-gray-700');
-                    });
-                    
-                    tab.classList.add('sidebar-active');
-                    tab.classList.remove('text-gray-700');
+                    const page = tab.getAttribute('data-page');
+
+                    if (page) {
+                        // Navigate to different page
+                        window.location.href = page + '.html';
+                    } else {
+                        // Handle tab navigation within current page
+                        // Hide all sections
+                        sections.forEach(section => {
+                            section.classList.add('hidden');
+                        });
+
+                        // Show selected section
+                        sections[index].classList.remove('hidden');
+
+                        // Update active tab
+                        tabs.forEach(t => {
+                            t.classList.remove('sidebar-active');
+                            t.classList.add('text-gray-700');
+                        });
+
+                        tab.classList.add('sidebar-active');
+                        tab.classList.remove('text-gray-700');
+                    }
                 });
             });
         });
